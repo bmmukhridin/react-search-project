@@ -7,6 +7,7 @@ import { Table } from "./components/Table";
 
 function App() {
   const [search, setSearch] = useState();
+
   const searchHandler = function (data) {
     return data.filter(
       (item) =>
@@ -16,13 +17,20 @@ function App() {
     );
   };
 
+  const onChangeHandler = function (e) {
+    const searchtarget = e.target.value;
+    if (searchtarget.length > 3) {
+      setSearch(searchtarget);
+    }
+  };
+
   return (
     <div className="app">
       <input
         className="search"
         type="search"
         placeholder="search"
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={onChangeHandler}
       />
       <Table data={searchHandler(Users)} />
     </div>
